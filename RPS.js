@@ -1,70 +1,84 @@
-SCORE = {
+let SCORE = {
     PW: 0,
     CW: 0,
     DRAW: 0
 };
 
-game();
 
+let cohicesArray = document.querySelectorAll("button");
+let playerScore = document.getElementById("score-player");
+let computerScore = document.getElementById("score-computer");
+let drawScore = document.getElementById("score-draw");
+let scoreAlert1 = document.getElementById("alert-container1");
+let scoreAlert2 = document.getElementById("alert-container2");
 
-function game() {    
-        for (let i = 0; i < 5; i++) {
-            SCORE[playRound()]++;
-            console.log(SCORE);
-            if (SCORE.PW >= 3 || (SCORE.PW + SCORE.DRAW > 3 && (SCORE.DRAW == 2 || SCORE.DRAW == 4)) && SCORE.DRAW - SCORE.PW != 4 ) {
-                alert(`Congratulations, you won the game!!! \n PLAYER:${SCORE.PW}\n COMPUTER:${SCORE.CW}\n DRAW:${SCORE.DRAW} `)
-                console.log(SCORE);
-                return;
-            }
-            if (SCORE.CW >= 3 || (SCORE.CW + SCORE.DRAW > 3 && (SCORE.DRAW == 2 || SCORE.DRAW == 4)) && SCORE.DRAW - SCORE.CW != 4 ) {
-                alert(`Sorry, you lost!!! \n COMPUTER:${SCORE.CW}\n PLAYER:${SCORE.PW}\n DRAW:${SCORE.DRAW}\n `)
-                console.log(SCORE);
-                return;
-            }
-            else if ((SCORE.PW + SCORE.CW  + SCORE.DRAW == 5) ) {
-                alert(`Ehh there is no winner!!!\n PLAYER:${SCORE.PW}\n COMPUTER:${SCORE.CW}\n DRAW:${SCORE.DRAW} `)
-                console.log(SCORE);
-            }
-            
-        }
-    }
+function game() {   
 
+    if (SCORE["PW"] == 5) {
+        scoreAlert1.innerHTML = `YOU WON THE GAME!`
+        scoreAlert2.innerHTML = `FINAL RESULT - PLAYER: 5  COMPUTER: ${SCORE["CW"]}`
+        cohicesArray.forEach(function(e) {
+            e.removeEventListener("click", getinnerHTML)
+        });
+    }
+    if (SCORE["CW"] == 5) {
 
-
-function playRound() {
-    let computer = getComputerChoice()
-    let player = getPlayerChoice()
-    if (player === computer) {
-        alert(`Its a draw, PLAYER:${player}  COMPUTER:${computer}`)
-        return "DRAW"
-    }
-    else if (player === "ROCK" && computer === "SCISSORS") {
-        alert(`You win, ${player}  beats  ${computer}!!`)
-        return "PW"
-    }
-    else if (player === "PAPER" && computer === "ROCK") {
-        alert(`You win, ${player}  beats  ${computer}!!`)
-        return "PW"
-    }
-    else if (player === "SCISSORS" && computer === "PAPER") {
-        alert(`You win, ${player}  beats  ${computer}!!`)
-        return "PW"
-    }
-    else {
-        alert(`You lose, ${computer} beats ${player}!!`)
-        return "CW"
+        scoreAlert1.innerHTML = `YOU LOST THE GAME!`
+        scoreAlert2.innerHTML = `FINAL RESULT - PLAYER: ${SCORE["PW"]} - COMPUTER: 5`
+        cohicesArray.forEach(function(e) {
+            e.removeEventListener("click", getinnerHTML)
+        });
     }
 }
 
-function getPlayerChoice() {
-    let pick = prompt("Please, make your choice", "Rock, Paper or Scissors").toUpperCase();
-    
-    if (pick === "ROCK" || pick === "PAPER" || pick === "SCISSORS") {
-        return pick;
+
+cohicesArray.forEach(function(e) {
+    e.addEventListener("click", getinnerHTML);
+})
+
+function getinnerHTML(e2) {
+    const playerChoice = e2.target.innerHTML;
+    playRound(playerChoice);
+    game();
+}
+
+function playRound(playerChoice) {
+    let computer = getComputerChoice();
+    let player = playerChoice;
+    if (player === computer) {
+        SCORE["DRAW"]++;
+        drawScore.innerHTML = SCORE["DRAW"];
+        scoreAlert1.innerHTML = "DRAW"
+        scoreAlert2.innerHTML = ""
+
+    }
+    else if (player === "ROCK" && computer === "SCISSORS") {
+        SCORE["PW"]++;
+        playerScore.innerHTML = SCORE["PW"];
+        scoreAlert1.innerHTML = `CONGRATS! YOU WON!`
+        scoreAlert2.innerHTML = `${player}  BEATS  ${computer}!`
+    }
+    else if (player === "PAPER" && computer === "ROCK") {
+        SCORE["PW"]++;
+        playerScore.innerHTML = SCORE["PW"];
+        scoreAlert1.innerHTML = `CONGRATS! YOU WON!`
+        scoreAlert2.innerHTML = `${player}  BEATS  ${computer}!`
+    }
+    else if (player === "SCISSORS" && computer === "PAPER") {
+        SCORE["PW"]++;
+        playerScore.innerHTML = SCORE["PW"];
+        scoreAlert1.innerHTML = `CONGRATS! YOU WON!`
+        scoreAlert2.innerHTML = `${player}  BEATS  ${computer}!`
     }
     else {
-       return getPlayerChoice();
-    } 
+        SCORE["CW"]++;
+        computerScore.innerHTML = SCORE["CW"]; 
+        scoreAlert1.innerHTML = `YOU LOST!`
+        scoreAlert2.innerHTML = `${computer}  BEATS  ${player}!`
+    }
+
+
+
 }
 
 function getComputerChoice() {

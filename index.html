@@ -5,9 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="./RPS.js"></script>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    
+    <div class="main">
+        <div class="container-left"></div>
+
+        <div class="container-center">
+            <div class="header">
+                <h1>ROCK PAPER SCISSORS</h1>
+                <br>
+                <h1>CAN YOU WIN THE COMPUTER</h1>   
+            </div>
+            
+
+            <div class="playscreen">
+                <div class="score-container">
+                    <div id="score-player">
+                        0 
+                    </div>
+                    <div id="score-draw">
+                       0
+                    </div>
+                    <div id="score-computer">
+                        0
+                    </div>
+
+                </div>
+
+                <div id="alert-container1">
+                    LET PLAY!
+                </div>
+                <div id="alert-container2">
+                    YOU GOT THIS!
+                </div>
+
+
+                <div class="buttons">
+                    <button class="choice">ROCK</button>
+                    <button class="choice">PAPER</button>
+                    <button class="choice">SCISSORS</button>
+                </div>
+
+            </div>      
+        </div>
+
+        <div class="container-right"></div>
+    </div>
+
 </body>
+<script type="text/javascript" src="./RPS.js"></script>
 </html>
