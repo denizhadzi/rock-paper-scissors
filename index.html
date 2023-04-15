@@ -8,52 +8,47 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<video autoplay loop muted src="img/video.mp4"></video> 
+<body>  
     <div class="main">
-        <div class="container-left"></div>
-
+        <div class="container-left">
+            <div class="image-container-left">
+                <img src="img/neo.png" alt="">
+            </div>
+        </div>
+        <div class="score-container-left">
+            <div id="score-player-left"> 0 </div>
+        </div>
         <div class="container-center">
             <div class="header">
-                <h1>ROCK PAPER SCISSORS</h1>
-                <br>
-                <h1>CAN YOU WIN THE COMPUTER</h1>   
+                <h1 class="header1">ROCK PAPER SCISSORS</h1>
+                <h1 class="header2">CAN YOU DEFEAT THE MATRIXX</h1> 
+                 
             </div>
-            
-
             <div class="playscreen">
-                <div class="score-container">
-                    <div id="score-player">
-                        0 
-                    </div>
-                    <div id="score-draw">
-                       0
-                    </div>
-                    <div id="score-computer">
-                        0
-                    </div>
-
-                </div>
-
-                <div id="alert-container1">
-                    LET PLAY!
-                </div>
-                <div id="alert-container2">
-                    YOU GOT THIS!
-                </div>
-
-
+                <h1 class="message">MESSAGE</h1>
                 <div class="buttons">
-                    <button class="choice">ROCK</button>
-                    <button class="choice">PAPER</button>
-                    <button class="choice">SCISSORS</button>
+                    <div class="button-container">
+                        <button class="ROCK"></button>
+                    </div>
+                    <div class="button-container">
+                        <button class="PAPER"></button>
+                    </div>
+                    <div class="button-container">
+                        <button class="SCISSORS"></button>
+                    </div>
                 </div>
-
             </div>      
         </div>
-
-        <div class="container-right"></div>
+        <div class="score-container-right">
+            <div id="score-player-right"> 0 </div>
+        </div>
+        <div class="container-right">
+            <div class="image-container-right">
+                <img src="img/as.png" alt="">
+            </div>    
+        </div>
     </div>
-
 </body>
 <script type="text/javascript" src="./RPS.js"></script>
 </html>
